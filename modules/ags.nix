@@ -15,7 +15,11 @@ in
       illogical-impulse-ags-launcher
     ]) ++ [ 
       config.illogical-impulse.hyprland.agsPackage 
-    ];
+    ] ++ (with pkgs; [
+      # The wallpaper switcher will be called by Hyprland,
+      # so we need to expose it.
+      gradience
+    ]);
 
     # AGS Configuration
     home.file.".config/ags" = {
