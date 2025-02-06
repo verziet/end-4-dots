@@ -494,6 +494,7 @@ in
 
     home.file.".config/Kvantum" = {
       source = "${selfPkgs.illogical-impulse-kvantum}";
+      recursive = true;
     };
   };
 }
