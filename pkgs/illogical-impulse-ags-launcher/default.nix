@@ -1,4 +1,4 @@
-{ lib, stdenv, fish, ollama, ags, gradience, gtksourceview, gtksourceview4, webkitgtk, webp-pixbuf-loader, ydotool, python3, bc, xdg-user-dirs, pywal, dart-sass, makeWrapper }:
+{ lib, stdenv, fish, ollama, ags, gradience, python3, bc, xdg-user-dirs, pywal, dart-sass, makeWrapper }:
 
 stdenv.mkDerivation {
   pname = "illogical-impulse-ags-launcher";
