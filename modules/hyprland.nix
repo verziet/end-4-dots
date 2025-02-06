@@ -1,6 +1,7 @@
 { config, lib, inputs, pkgs, ... }:
 let
-  hypr = inputs.hyprland.packages.${pkgs.system};
+  hypr = config.illogical-impulse.hyprland.package;
+  hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
     selfPkgs = import ../pkgs { 
     inherit pkgs; 
     ags = inputs.ags.packages.${pkgs.system}.default; 
@@ -26,8 +27,8 @@ in
       enable = true;
       systemd.enable = false;
       xwayland.enable = true;
-      package = hypr.hyprland;
-      portalPackage = hypr.xdg-desktop-portal-hyprland;
+      package = hypr;
+      portalPackage = hypr-xdg;
       settings = {
         env = [
           "QT_QPA_PLATFORM, wayland"
@@ -38,7 +39,7 @@ in
         monitor = hyprlandConf.monitor;
         "exec-once" = [
           "swww-daemon --format xrgb"
-          "illogic-impulse-ags-launcher"
+          "illogical-impulse-ags-launcher"
           "fcitx5"
           ''
           gnome-keyring-daemon --start --components=secrets
