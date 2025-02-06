@@ -1,12 +1,9 @@
-{ ... }:
+self: anyrun: ags: { ... }:
 {
-  nixpkgs.overlays = [
-    (import ../pkgs)
-  ];
-
   imports = [
-    ./options.nix
-    ./anyrun.nix
+    anyrun.homeManagerModules.default
+    (import ./options.nix ags)
+    (import ./anyrun.nix anyrun)
     ./hyprland.nix
     ./kitty.nix
     ./zsh.nix

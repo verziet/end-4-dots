@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+ags: { lib, pkgs, ... }:
 {
   options.illogical-impulse = {
     enable = lib.mkEnableOption "Enable illogical-impulse";
@@ -20,7 +20,7 @@
       };
       agsPackage = lib.mkOption {
         type = lib.types.package;
-        default = inputs.ags.packages.${pkgs.system}.default.override {
+        default = ags.packages.${pkgs.system}.default.override {
           extraPackages = with pkgs; [ 
             gtksourceview
             gtksourceview4

@@ -1,9 +1,9 @@
-{ config, pkgs, inputs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
   selfPkgs = import ../pkgs { 
     inherit pkgs; 
-    ags = inputs.ags.packages.${pkgs.system}.default; 
+    ags = config.illogical-impulse.hyprland.agsPackage; 
   };
   google-fonts = (pkgs.google-fonts.override {
     fonts = [

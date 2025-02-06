@@ -1,16 +1,20 @@
-{ config, inputs, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
-    selfPkgs = import ../pkgs { 
+  selfPkgs = import ../pkgs { 
     inherit pkgs; 
-    ags = inputs.ags.packages.${pkgs.system}.default; 
+    ags = config.illogical-impulse.hyprland.agsPackage; 
   };
 in
 {
   config = lib.mkIf enabled {
-    # Expose the AGS launcher
-    home.packages = with selfPkgs; [
+    # Expose the AGS launcher and AGS itself,
+    # we need the launcher to launch the bar,
+    # and AGS itself to toggle window.
+    home.packages = (with selfPkgs; [
       illogical-impulse-ags-launcher
+    ]) ++ [ 
+      config.illogical-impulse.hyprland.agsPackage 
     ];
 
     # AGS Configuration

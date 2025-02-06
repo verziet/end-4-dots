@@ -1,10 +1,10 @@
-{ config, lib, inputs, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   hypr = config.illogical-impulse.hyprland.package;
   hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
-    selfPkgs = import ../pkgs { 
+  selfPkgs = import ../pkgs { 
     inherit pkgs; 
-    ags = inputs.ags.packages.${pkgs.system}.default; 
+    ags = config.illogical-impulse.hyprland.agsPackage; 
   };
   enabled = config.illogical-impulse.enable;
   hyprlandConf = config.illogical-impulse.hyprland;
