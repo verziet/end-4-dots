@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, inputs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
-  selfPkgs = import ../pkgs { inherit pkgs; };
+  selfPkgs = import ../pkgs { 
+    inherit pkgs; 
+    ags = inputs.ags.packages.${pkgs.system}.default; 
+  };
   google-fonts = (pkgs.google-fonts.override {
     fonts = [
       "Gabarito"

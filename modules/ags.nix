@@ -1,7 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, inputs, pkgs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
-  selfPkgs = import ../pkgs { inherit pkgs; };
+    selfPkgs = import ../pkgs { 
+    inherit pkgs; 
+    ags = inputs.ags.packages.${pkgs.system}.default; 
+  };
 in
 {
   config = lib.mkIf enabled {

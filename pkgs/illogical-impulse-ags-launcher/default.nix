@@ -18,15 +18,15 @@ stdenv.mkDerivation {
       --prefix PATH : ${lib.makeBinPath [ 
         fish
         ollama
-        (ags.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ [ 
+        (ags.override {
+          extraPackages = [ 
             gtksourceview
             gtksourceview4
             webkitgtk
             webp-pixbuf-loader
             ydotool
           ];
-        }))
+        })
         bc
         xdg-user-dirs
         pywal
