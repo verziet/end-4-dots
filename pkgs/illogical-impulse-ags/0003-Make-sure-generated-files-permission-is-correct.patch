@@ -1,0 +1,86 @@
+From 215151deb79427d3857a4280cbaec6c1bc5e5c46 Mon Sep 17 00:00:00 2001
+From: bigsaltyfishes <bigsaltyfishes@gmail.com>
+Date: Sat, 8 Feb 2025 00:47:55 +0800
+Subject: [PATCH] Make sure generated files permission is correct
+
+* Files may copied from nix store, their permission is 444, which is read-only. We need to make sure they are writable.
+
+Signed-off-by: bigsaltyfishes <bigsaltyfishes@gmail.com>
+---
+ .config/ags/scripts/color_generation/applycolor.sh | 11 ++++++++++-
+ .config/ags/scripts/kvantum/materialQT.sh          |  4 ++++
+ 2 files changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/.config/ags/scripts/color_generation/applycolor.sh b/.config/ags/scripts/color_generation/applycolor.sh
+index 6cb12f7..10eaed9 100755
+--- a/.config/ags/scripts/color_generation/applycolor.sh
++++ b/.config/ags/scripts/color_generation/applycolor.sh
+@@ -56,6 +56,8 @@ apply_fuzzel() {
+   # Copy template
+   mkdir -p "$CACHE_DIR"/user/generated/fuzzel
+   cp "scripts/templates/fuzzel/fuzzel.ini" "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
++  # Make sure cache permission
++  chmod 644 "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
+   # Apply colors
+   for i in "${!colorlist[@]}"; do
+     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/fuzzel/fuzzel.ini
+@@ -73,6 +75,8 @@ apply_term() {
+   # Copy template
+   mkdir -p "$CACHE_DIR"/user/generated/terminal
+   cp "scripts/templates/terminal/sequences.txt" "$CACHE_DIR"/user/generated/terminal/sequences.txt
++  # Make sure cache permission
++  chmod 644 "$CACHE_DIR"/user/generated/terminal/sequences.txt
+   # Apply colors
+   for i in "${!colorlist[@]}"; do
+     sed -i "s/${colorlist[$i]} #/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/terminal/sequences.txt
+@@ -96,6 +100,8 @@ apply_hyprland() {
+   # Copy template
+   mkdir -p "$CACHE_DIR"/user/generated/hypr/hyprland
+   cp "scripts/templates/hypr/hyprland/colors.conf" "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
++  # Make sure cache permission
++  chmod 644 "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
+   # Apply colors
+   for i in "${!colorlist[@]}"; do
+     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]#\#}/g" "$CACHE_DIR"/user/generated/hypr/hyprland/colors.conf
+@@ -113,6 +119,8 @@ apply_hyprlock() {
+   # Copy template
+   mkdir -p "$CACHE_DIR"/user/generated/hypr/
+   cp "scripts/templates/hypr/hyprlock.conf" "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
++  # Make sure cache permission
++  chmod 644 "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
+   # Apply colors
+   # sed -i "s/{{ SWWW_WALL }}/${wallpath_png}/g" "$CACHE_DIR"/user/generated/hypr/hyprlock.conf
+   for i in "${!colorlist[@]}"; do
+@@ -142,7 +150,8 @@ apply_gtk() { # Using gradience-cli
+   # Copy template
+   mkdir -p "$CACHE_DIR"/user/generated/gradience
+   cp "scripts/templates/gradience/preset.json" "$CACHE_DIR"/user/generated/gradience/preset.json
+-
++  # Make sure cache permission
++  chmod 644 "$CACHE_DIR"/user/generated/gradience/preset.json
+   # Apply colors
+   for i in "${!colorlist[@]}"; do
+     sed -i "s/{{ ${colorlist[$i]} }}/${colorvalues[$i]}/g" "$CACHE_DIR"/user/generated/gradience/preset.json
+diff --git a/.config/ags/scripts/kvantum/materialQT.sh b/.config/ags/scripts/kvantum/materialQT.sh
+index 7495fad..9c71449 100755
+--- a/.config/ags/scripts/kvantum/materialQT.sh
++++ b/.config/ags/scripts/kvantum/materialQT.sh
+@@ -31,11 +31,15 @@ apply_qt() {
+ 	if [ "$lightdark" = "light" ]; then
+ 		# apply ligght colors
+ 		cp "$XDG_CONFIG_HOME/Kvantum/Colloid/Colloid.kvconfig" "$XDG_CONFIG_HOME/Kvantum/MaterialAdw/MaterialAdw.kvconfig"
++		# Make sure permissions
++		chmod 644 "$XDG_CONFIG_HOME/Kvantum/MaterialAdw/MaterialAdw.kvconfig"
+ 		python "$CONFIG_DIR/scripts/kvantum/adwsvg.py"
+ 
+ 	else
+ 		#apply dark colors
+ 		cp "$XDG_CONFIG_HOME/Kvantum/Colloid/ColloidDark.kvconfig" "$XDG_CONFIG_HOME/Kvantum/MaterialAdw/MaterialAdw.kvconfig"
++		# Make sure permissions
++		chmod 644 "$XDG_CONFIG_HOME/Kvantum/MaterialAdw/MaterialAdw.kvconfig"
+ 		python "$CONFIG_DIR/scripts/kvantum/adwsvgDark.py"
+ 	fi
+ }
+-- 
+2.47.1
+

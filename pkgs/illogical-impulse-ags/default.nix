@@ -14,6 +14,7 @@ stdenv.mkDerivation {
   patches = [ 
     ./0001-Use-system-python-environment.patch
     ./0002-Kill-session-instead-of-kill-Hyprland.patch
+    ./0003-Make-sure-generated-files-permission-is-correct.patch
   ];
 
   nativeBuildInputs = [ makeWrapper ];
