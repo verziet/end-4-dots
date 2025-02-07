@@ -13,7 +13,14 @@ stdenv.mkDerivation {
 
   installPhase = ''
     mkdir -p $out
-    cp -r $src/.config/Kvantum/* $out/
+    cp -r .config/Kvantum/* $out/
+
+    runHook postInstall
+  '';
+
+  postInstall = ''
+    mv $out/MaterialAdw/MaterialAdw.svg $out/MaterialAdw/MaterialAdw.svg.sample
+    mv $out/MaterialAdw/MaterialAdw.kvconfig $out/MaterialAdw/MaterialAdw.kvconfig.sample
   '';
 
   meta = {
