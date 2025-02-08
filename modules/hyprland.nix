@@ -14,6 +14,7 @@ in
     programs.hyprlock.enable = true;
     services.hypridle.enable = true;
     home.packages = with pkgs; [
+      gvfs
       easyeffects
       gnome-control-center
       gnome-tweaks
@@ -31,6 +32,7 @@ in
       portalPackage = hypr-xdg;
       settings = {
         env = [
+          "GIO_EXTRA_MODULES, ${pkgs.gvfs}/lib/gio/modules:$GIO_EXTRA_MODULES"
           "QT_QPA_PLATFORM, wayland"
           "QT_QPA_PLATFORMTHEME, qt5ct"
         ] ++ (lib.optionals hyprlandConf.ozoneWayland.enable [
@@ -41,22 +43,12 @@ in
           "swww-daemon --format xrgb"
           "illogical-impulse-ags-launcher"
           "fcitx5"
-          ''
-          gnome-keyring-daemon --start --components=secrets
-          ''
+          "gnome-keyring-daemon --start --components=secrets"
           "hypridle"
-          ''
-          dbus-update-activation-environment --all
-          ''
-          ''
-          sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          ''
-          ''
-          hyprpm reload
-          ''
-          ''
-          easyeffects --gapplication-service
-          ''
+          "dbus-update-activation-environment --all"
+          "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+          "hyprpm reload"
+          "easyeffects --gapplication-service"
           "wl-paste --type text --watch cliphist store"
           "wl-paste --type image --watch cliphist store"
           "hyprctl setcursor Bibata-Modern-Ice 24"
