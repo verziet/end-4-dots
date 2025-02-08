@@ -207,7 +207,7 @@ in
             "Ctrl+Super+Shift, Left, movetoworkspace, -1"
             "Ctrl+Super+Shift, Right, movetoworkspace, +1"
             ''
-            Ctrl+Super+Shift,S,exec,grim -g"$(slurp $SLURP_ARGS)""tmp.png" && tesseract"tmp.png" - | wl-copy && rm"tmp.png"
+            Ctrl+Super+Shift,S,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png"
             ''
             "Ctrl+Super+Shift, Up, movetoworkspacesilent, special"
             "Ctrl+Super+Shift, V, exec, easyeffects"
@@ -292,7 +292,7 @@ in
             "Super+Shift+Alt, Q, exec, hyprctl kill"
             "Super+Shift+Alt, R, exec, ~/.config/ags/scripts/record-script.sh --fullscreen-sound"
             ''
-            Super+Shift+Alt, S, exec, grim -g"$(slurp)" - | swappy -f -
+            Super+Shift+Alt, S, exec, grim -g "$(slurp)" - | swappy -f -
             ''
             "Super+Shift, C, exec, hyprpicker -a"
             "Super+Shift, Down, movewindow, d"
@@ -305,7 +305,7 @@ in
             "Super+Shift, Right, movewindow, r"
             "Super+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area"
             ''
-            Super+Shift,T,exec,grim -g"$(slurp $SLURP_ARGS)""tmp.png" && tesseract -l eng"tmp.png" - | wl-copy && rm"tmp.png"
+            Super+Shift,T,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png"
             ''
             "Super+Shift, Up, movewindow, u"
             "Super+Shift, W, exec, wps"
