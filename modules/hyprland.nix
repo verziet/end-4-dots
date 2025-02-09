@@ -15,6 +15,7 @@ in
     services.hypridle.enable = true;
     home.packages = with pkgs; [
       gvfs
+      polkit_gnome
       easyeffects
       gnome-control-center
       gnome-tweaks
@@ -44,6 +45,13 @@ in
           "illogical-impulse-ags-launcher"
           "fcitx5"
           "gnome-keyring-daemon --start --components=secrets"
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
+          "systemctl --user start gvfs-daemon.service"
+          "systemctl --user start gvfs-udisks2-volume-monitor.service"
+          "systemctl --user start gvfs-afc-volume-monitor.service"
+          "systemctl --user start gvfs-gphoto2-volume-monitor.service"
+          "systemctl --user start gvfs-mtp-volume-monitor.service"
+          "systemctl --user start gvfs-metadata.service"
           "hypridle"
           "dbus-update-activation-environment --all"
           "sleep 1 && dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
