@@ -34,7 +34,6 @@ in
         ydotool
 
         # themes
-        selfPkgs.illogical-impulse-oneui4-icons
         adwaita-qt6
         adw-gtk3
         bibata-cursors
