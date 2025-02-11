@@ -5,10 +5,10 @@ stdenv.mkDerivation {
   version = "latest";
 
   src = fetchFromGitHub {
-    owner = "end-4";
+    owner = "bigsaltyfishes";
     repo = "dots-hyprland";
-    rev = "5c396d7548cf1f6d2460e5b1425301d0c960fc50";
-    sha256 = "sha256-EMhcIApxaV7X2H88eNWekKDpd56OU7CeWImftlkoM8o=";
+    rev = "6ce7d07b5b0d26afff64002341fbfcfde0e02369";
+    sha256 = "sha256-yJf/B7ZT3Y9Is7xMoVnvZZl/qBWxn7BLpz9Ab6v7Hys=";
   };
 
   installPhase = ''

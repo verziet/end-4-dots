@@ -22,6 +22,20 @@ in
       gnome-system-monitor
       gnome-control-center
       gnome-tweaks
+      brightnessctl
+      ddcutil
+      cliphist
+      fuzzel
+      grim
+      hyprpicker
+      tesseract
+      pavucontrol
+      playerctl
+      swappy
+      slurp
+      swww
+      wl-clipboard
+      wf-recorder
     ];
 
     home.file.".config/hypr/shaders" = {
@@ -428,7 +442,7 @@ in
           "animation slide right, sideright.*"
           "blur, bar[0-9]*"
           "blur, cheatsheet[0-9]*"
-          "blur, corner.*"
+          "blur, barcorner.*"
           "blur, dock[0-9]*"
           "blur, gtk-layer-shell"
           "blur, indicator.*"
@@ -444,8 +458,8 @@ in
           "ignorealpha 0.5, launcher"
           "ignorealpha 0.69, notifications"
           "ignorealpha 0.6, bar[0-9]*"
+          "ignorealpha 0.6, barcorner.*"
           "ignorealpha 0.6, cheatsheet[0-9]*"
-          "ignorealpha 0.6, corner.*"
           "ignorealpha 0.6, dock[0-9]*"
           "ignorealpha 0.6, indicator.*"
           "ignorealpha 0.6, indicator.*"

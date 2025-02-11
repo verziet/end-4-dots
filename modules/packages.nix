@@ -1,10 +1,6 @@
 { config, pkgs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
-  selfPkgs = import ../pkgs { 
-    inherit pkgs; 
-    ags = config.illogical-impulse.hyprland.agsPackage; 
-  };
   google-fonts = (pkgs.google-fonts.override {
     fonts = [
       "Gabarito"
@@ -45,22 +41,6 @@ in
         google-fonts
         cascadia-code
         material-symbols
-
-        # hyprland
-        brightnessctl
-        ddcutil
-        cliphist
-        fuzzel
-        grim
-        hyprpicker
-        tesseract
-        pavucontrol
-        playerctl
-        swappy
-        slurp
-        swww
-        wl-clipboard
-        wf-recorder
       ] ++ (with pkgs.nerd-fonts; [
         # nerd fonts
         ubuntu
