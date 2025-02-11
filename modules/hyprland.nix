@@ -17,6 +17,9 @@ in
       gvfs
       polkit_gnome
       easyeffects
+      file-roller
+      gnome-text-editor
+      gnome-system-monitor
       gnome-control-center
       gnome-tweaks
     ];
