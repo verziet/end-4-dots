@@ -1,6 +1,10 @@
 { config, pkgs, lib, ... }:
 let
   enabled = config.illogical-impulse.enable;
+  selfPkgs = import ../pkgs { 
+    inherit pkgs; 
+    ags = config.illogical-impulse.hyprland.agsPackage; 
+  };
   google-fonts = (pkgs.google-fonts.override {
     fonts = [
       "Gabarito"
@@ -30,6 +34,7 @@ in
         ydotool
 
         # themes
+        selfPkgs.illogical-impulse-oneui4-icons
         adwaita-qt6
         adw-gtk3
         bibata-cursors
