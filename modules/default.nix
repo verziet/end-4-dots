@@ -3,7 +3,7 @@ self: anyrun: ags: { ... }:
   imports = [
     anyrun.homeManagerModules.default
     (import ./options.nix ags)
-    (import ./anyrun.nix anyrun)
+    #(import ./anyrun.nix anyrun)
     ./hyprland.nix
     ./kitty.nix
     ./zsh.nix
