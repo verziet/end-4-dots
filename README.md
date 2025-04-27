@@ -1,7 +1,4 @@
 # Illogical Impulse Dotfiles for NixOS
-## Screenshot
-
-![screenshot](assets/screenshot.png)
 
 ## Usage
 
